@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.raf</groupId>
+    <artifactId>mvn-multi-module-project-example</artifactId>
+    <version>0.0.2</version>
+
+    <properties>
+        <jackson.version>2.11.3</jackson.version>
+    </properties>
+
+    <modules>
+        <module>data-repo-json-impl</module>
+        <module>data-repo-spec</module>
+        <module>data-repo-test-project</module>
+        <module>data-repo-yaml-impl</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.raf</groupId>
+                <artifactId>data-repo-spec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.raf</groupId>
+                <artifactId>data-repo-json-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.raf</groupId>
+                <artifactId>data-repo-yaml-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>releases-repository1</id>
+            <url>http://3.93.10.82:8081/repository/releases-repository/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots-repository1</id>
+            <url>http://3.93.10.82:8081/repository/snapshots-repository/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <packaging>pom</packaging>
+
+</project>
